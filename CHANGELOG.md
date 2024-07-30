@@ -4,6 +4,11 @@
 
 <!--- END HEADER -->
 
+## [0.0.1](https://github.com/celsonery/db-sync/compare/0.0.0...v0.0.1) (2024-07-30)
+
+
+---
+
 ## [1.0.0](https://github.com/celsonery/db-sync/compare/17e71ea0ef1b8544c5e01b1a194004a2d7f582b2...v1.0.0) (2024-07-30)
 
 ### Novas funcionalidades
