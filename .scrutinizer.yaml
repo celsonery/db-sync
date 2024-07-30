@@ -1,0 +1,23 @@
+build:
+  environment:
+    php:
+      version: 8.2
+  nodes:
+    coverage:
+      tests:
+        before:
+          - "cp .env.example .env"
+          - "composer update"
+        override:
+          - command: 'php artisan test'
+
+filter:
+  paths:
+    - 'app/*'
+  excluded_paths:
+    - 'vendor/*'
+    - 'tests/*'
+    - 'app/views/*'
+    - 'app/config/*'
+    - 'app/database/*'
+    - 'reports/*'
