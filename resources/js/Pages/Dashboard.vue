@@ -49,8 +49,8 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {Head, router, useForm} from '@inertiajs/vue3';
-import {onMounted, ref} from 'vue'
+import {Head, useForm} from '@inertiajs/vue3';
+import {ref} from 'vue'
 
 const props = defineProps({
     databases: Object,
@@ -66,24 +66,15 @@ const message = ref('')
 
 // Methods
 function sendData(){
-    console.log(`Metodo SendData funcionando: enviando ${form.databaseSelected}`)
     message.value = null
 
     form.post(route('dashboard.store'), {
-        onSuccess: (response) => {
+        onSuccess: () => {
             message.value = 'Sincronizado com sucesso!'
-            console.log(props.messageApi)
-            console.log(response)
         },
-        onError: (error) => {
+        onError: () => {
             message.value = `Erro: ${form.errors.databaseSelected}`
-            console.log(error)
         }
     })
 }
-
-// Hooks
-onMounted(() => {
-    console.log('OnMounted')
-})
 </script>
