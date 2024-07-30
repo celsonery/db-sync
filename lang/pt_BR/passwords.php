@@ -17,6 +17,6 @@ return [
     'sent' => 'Enviamos um link para seu email.',
     'throttled' => 'Por favor espere antes de tentar novamente.',
     'token' => 'Este token é inválido.',
-    'user' => "Não encontramos um usuário com este email.",
+    'user' => 'Não encontramos um usuário com este email.',
 
 ];

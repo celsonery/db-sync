@@ -1,0 +1,7 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "nullable_type_declaration": false,
+        "concat_space": false
+    }
+}

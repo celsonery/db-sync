@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DatabaseRequest;
 use Illuminate\Process\Pipe;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Process;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
     public function __construct(
-//        private array $databases = [],
+        private array $databases,
         private string $pgHost = '',
         private string $pgUser = ''
-    ){
+    ) {
         $this->pgHost = env('PGHOST');
         $this->pgUser = env('PGUSERNAME');
     }
@@ -36,17 +35,16 @@ class DashboardController extends Controller
         }
 
         return Inertia::render('Dashboard', [
-            'databases' => $total
+            'databases' => $total,
         ]);
     }
 
     public function store(DatabaseRequest $request)
     {
-
         return back()->with(['messageApi' => 'Minha mensagem personalizada']);
 
         return back()->withErrors([
-            'databaseSelected' => 'Store funcionando'
+            'databaseSelected' => 'Store funcionando',
         ]);
     }
 }
