@@ -13,8 +13,12 @@
                                 <select id="databases"
                                         v-model="form.databaseSelected"
                                         :disabled="form.processing"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:cursor-not-allowed">
-                                    <option v-for="(database, index) in props.databases" :value="database" :key="index">{{ database }}</option>
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:cursor-not-allowed">
+                                    <option
+                                        v-for="(database, index) in props.databases"
+                                        :value="database"
+                                        :key="index">{{ database }}
+                                    </option>
                                 </select>
                             </div>
 

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'DevOps Bagarote',
             'email' => 'devops@bagarote.com.br',
-            'password' => Str::random(10)
+            'password' => Str::random(10),
         ]);
     }
 }

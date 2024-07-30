@@ -22,7 +22,7 @@ class DatabaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'databaseSelected' => ['required', 'string']
+            'databaseSelected' => ['required', 'string'],
         ];
     }
 
@@ -30,7 +30,7 @@ class DatabaseRequest extends FormRequest
     {
         return [
             'databaseSelected.required' => 'Banco de dados não informado!',
-            'databaseSelected.string' => 'Nome do banco de dados inválido!'
+            'databaseSelected.string' => 'Nome do banco de dados inválido!',
         ];
     }
 }
