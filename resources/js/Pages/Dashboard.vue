@@ -40,12 +40,6 @@
                             <span class="font-medium">{{ message }}</span>.
                         </div>
 
-                        <div>
-                            <pre>
-                                {{ props.messageApi }}
-                            </pre>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -79,6 +73,7 @@ function sendData(){
         onSuccess: (response) => {
             message.value = 'Sincronizado com sucesso!'
             console.log(props.messageApi)
+            console.log(response)
         },
         onError: (error) => {
             message.value = `Erro: ${form.errors.databaseSelected}`
