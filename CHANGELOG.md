@@ -4,6 +4,37 @@
 
 <!--- END HEADER -->
 
+## [1.1.1](https://github.com/celsonery/db-sync/compare/v1.1.0...v1.1.1) (2024-07-31)
+
+### Correções de erros
+
+* Retorna ExampleTest.php em Unit tests ([9594b5](https://github.com/celsonery/db-sync/commit/9594b56870e231758c2e3809e82ea7232841e3d8))
+
+
+---
+
+## [1.1.0](https://github.com/celsonery/db-sync/compare/v1.0.0...v1.1.0) (2024-07-31)
+
+### Novas funcionalidades
+
+* Cria CHANGELOG.md ([16765b](https://github.com/celsonery/db-sync/commit/16765bb2ea282d20401184aafd9239693e8cf53c))
+
+### Testes
+
+* Altera Testes ([f36cd9](https://github.com/celsonery/db-sync/commit/f36cd929a693acd7e00393bca04a3a0f36db9d7b))
+
+### Documentação
+
+* Ajusta README.md, CONTRIBUTING.pt-br.md, README.pt-br.md e SECURITY.pt-br.md ([3922c7](https://github.com/celsonery/db-sync/commit/3922c71edd4c28b83d848ca2c85bad9626630aa5))
+
+### Alterações sem importâncias
+
+* Ajusta .env.example ([5c8f14](https://github.com/celsonery/db-sync/commit/5c8f14351054337478361a914cae47bba151652b))
+* Altera README.md ([b4d015](https://github.com/celsonery/db-sync/commit/b4d015f3d92c5da5d07457f9a508b7cd4d899dfe))
+
+
+---
+
 ## [1.0.0](https://github.com/celsonery/db-sync/compare/17e71ea0ef1b8544c5e01b1a194004a2d7f582b2...v1.0.0) (2024-07-30)
 
 ### Novas funcionalidades
