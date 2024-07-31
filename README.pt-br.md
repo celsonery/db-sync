@@ -10,9 +10,9 @@
 [![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/celsonery/db-sync/blob/main/README.md)
 
 ## Sobre DB Sync
-The DB Sync application was born because the development team needed to transfer data from prod to dev databases.
-This application drops, creates and transfers data from database-name to database-name_dev, if _dev does not exist,
-the application will create it.
+O aplicativo DB Sync nasceu porque a equipe de desenvolvimento precisava transferir dados dos bancos de dados prod para dev.
+Este aplicativo descarta, cria e transfere dados do database-name para database-name_dev, se _dev não existir,
+o aplicativo o criará.
 
 ## Requisitos
 ```shell
