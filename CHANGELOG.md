@@ -4,6 +4,15 @@
 
 <!--- END HEADER -->
 
+## [1.1.1](https://github.com/celsonery/db-sync/compare/v1.1.0...v1.1.1) (2024-07-31)
+
+### Correções de erros
+
+* Retorna ExampleTest.php em Unit tests ([9594b5](https://github.com/celsonery/db-sync/commit/9594b56870e231758c2e3809e82ea7232841e3d8))
+
+
+---
+
 ## [1.1.0](https://github.com/celsonery/db-sync/compare/v1.0.0...v1.1.0) (2024-07-31)
 
 ### Novas funcionalidades
