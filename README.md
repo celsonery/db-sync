@@ -6,6 +6,10 @@
 [![Build](https://img.shields.io/scrutinizer/build/g/celsonery/db-sync.svg?style=flat-square)](https://scrutinizer-ci.com/g/celsonery/db-sync)
 [![Quality Score](https://img.shields.io/scrutinizer/g/celsonery/db-sync.svg?style=flat-square)](https://scrutinizer-ci.com/g/celsonery/db-sync/build-status/main)
 
+# Multilanguage README
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/celsonery/db-sync/blob/main/README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/celsonery/db-sync/blob/main/README.pt-br.md)
+
 ## About DB Sync
 The DB Sync application was born because the development team needed to transfer data from prod to dev databases.
 This application drops, creates and transfers data from database-name to database-name_dev, if _dev does not exist,

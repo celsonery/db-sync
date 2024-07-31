@@ -6,7 +6,10 @@
 [![Build](https://img.shields.io/scrutinizer/build/g/celsonery/db-sync.svg?style=flat-square)](https://scrutinizer-ci.com/g/celsonery/db-sync)
 [![Quality Score](https://img.shields.io/scrutinizer/g/celsonery/db-sync.svg?style=flat-square)](https://scrutinizer-ci.com/g/celsonery/db-sync/build-status/main)
 
-## About DB Sync
+# English README
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/celsonery/db-sync/blob/main/README.md)
+
+## Sobre DB Sync
 The DB Sync application was born because the development team needed to transfer data from prod to dev databases.
 This application drops, creates and transfers data from database-name to database-name_dev, if _dev does not exist,
 the application will create it.
@@ -86,14 +89,11 @@ php artisan test
 Por favor veja em [CHANGELOG](CHANGELOG.md) para mais detalhes.
 
 ## Contribuindo
-
-Obrigado por considerar contribuir para a DB Sync! O guia de contribuição pode ser encontrado na [documentação do Contribute](.github/CONTRIBUTING.md).
+Obrigado por considerar contribuir para a DB Sync! O guia de contribuição pode ser encontrado na [documentação do Contribute](.github/CONTRIBUTING.pt-br.md).
 
 
 ## Vulnerabilidades de Segurança
-
 Se você descobrir uma vulnerabilidade de segurança no DB Sync, envie um e-mail para Celso Nery via [celso.nery@gmail.com](mailto:celso.nery@gmail.com). Todas as vulnerabilidades de segurança serão prontamente tratadas.
 
 ## Licença
-
 O DB Sync é um software de código aberto licenciado sob a [licença MIT](LICENSE).
