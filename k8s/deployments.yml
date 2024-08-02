@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-sync-api
+  #namespace: bagarote-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-sync-api
+  template:
+    metadata:
+      labels:
+        app: db-sync-api
+    spec:
+#      securityContext:
+#        runAsUser: 5000
+#        runAsGroup: 5000
+      containers:
+      - name: db-sync-api
+        image: registry.bagarote.dev.br/bagarote/db-sync/api:latest
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: APP_ENV
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: app_env
+          - name: APP_KEY
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: app_key
+          - name: APP_DEBUG
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: app_debug
+          - name: DB_CONNECTION
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: db_connection
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: db_host
+          - name: DB_PORT
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: db_port
+          - name: DB_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: db_database
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: db_username
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: db_password
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: pg_password
+        securityContext:
+          allowPrivilegeEscalation: false
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+        - name: regcred
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: name
+                operator: NotIn
+                values:
+                - ks01
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-sync-api-service
+  #namespace: bagarote-prod
+spec:
+  selector:
+    app: db-sync-api
+  type: NodePort
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 32000

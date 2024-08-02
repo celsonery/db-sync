@@ -10,8 +10,7 @@ use Inertia\Response;
 
 class DashboardController extends Controller
 {
-    public function __construct(private DatabaseService $service)
-    {}
+    public function __construct(private DatabaseService $service) {}
 
     public function index(): Response
     {
@@ -27,7 +26,7 @@ class DashboardController extends Controller
         $result = $this->service->execute($request['databaseSelected']);
 
         return back()->with([
-            'message' => $result
+            'message' => $result,
         ]);
     }
 }

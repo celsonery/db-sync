@@ -11,8 +11,7 @@ class DatabaseService
     public function __construct(
         private string $pgHost = '',
         private string $pgUser = ''
-    )
-    {
+    ) {
         $this->pgHost = env('PGHOST');
         $this->pgUser = env('PGUSERNAME');
     }
@@ -44,7 +43,7 @@ class DatabaseService
 
         return redirect()->back()
             ->with([
-                'message' => "Datadase {$database} sincronizao com {$database}_dev com sucesso!"
+                'message' => "Datadase {$database} sincronizao com {$database}_dev com sucesso!",
             ]);
     }
 
@@ -64,6 +63,7 @@ class DatabaseService
 
         logs()->debug('Criando Database: ' . $process->output());
         $result = Process::run("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} -c \"CREATE DATABASE {$database}_dev\"");
+
         return $result->successful();
 
         return false;

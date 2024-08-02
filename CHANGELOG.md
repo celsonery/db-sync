@@ -4,6 +4,32 @@
 
 <!--- END HEADER -->
 
+## [1.2.0](https://github.com/celsonery/db-sync/compare/v1.1.1...v1.2.0) (2024-08-02)
+
+### Novas funcionalidades
+
+* Adiciona Gitlab-CI e Deployment para kubernetes ([3fc9d1](https://github.com/celsonery/db-sync/commit/3fc9d1b9818cc3a7f3d4225bbd6c4af52f72bbfa))
+* Adiciona sonarqube ([39d591](https://github.com/celsonery/db-sync/commit/39d59165680154072b46875deb19b0162c3c5915))
+* Cria dockerfile para criação de conteiner ([425fc7](https://github.com/celsonery/db-sync/commit/425fc76119f03fe8faf289ef507f8c483486decb))
+
+### Correções de erros
+
+* Adiciona public/build ([2ded10](https://github.com/celsonery/db-sync/commit/2ded1033f2d08b4e55aa7074b1eb977adeaa9668))
+* Corrige composer.json script pint ([d51b91](https://github.com/celsonery/db-sync/commit/d51b91d601447a0fa8f33cd90586825279e489c5))
+* Volta /public/build do .gitignore ([61cd06](https://github.com/celsonery/db-sync/commit/61cd067f57fb0fc48ddd06dcd736eea8f4bb0386))
+
+### Refatorações
+
+* Aplicado pint para code quality ([f8702d](https://github.com/celsonery/db-sync/commit/f8702dfb52adfbefcadc3b7a2e0152ea1751c2c0))
+
+### Integração continua
+
+* Adiciona migrate ([3c8d69](https://github.com/celsonery/db-sync/commit/3c8d69d1a5b9f42b4b9f6c7c4ddeba23e663c88f))
+* Altera APP_ENV para local e acerta sobre em README.pt-br.md ([96a9d2](https://github.com/celsonery/db-sync/commit/96a9d28b20b9e77dc9620e61903935d8c17e1317))
+
+
+---
+
 ## [1.1.1](https://github.com/celsonery/db-sync/compare/v1.1.0...v1.1.1) (2024-07-31)
 
 ### Correções de erros
