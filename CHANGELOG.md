@@ -4,6 +4,19 @@
 
 <!--- END HEADER -->
 
+## [1.2.1](https://github.com/celsonery/db-sync/compare/v1.2.0...v1.2.1) (2024-08-02)
+
+### Correções de erros
+
+* Corrige dockerfile .gitlab-ci.yml e deployments.yml ([ced3f7](https://github.com/celsonery/db-sync/commit/ced3f78e914529a603a3d8beff95c857b7ced2a9))
+
+### Refatorações
+
+* Ordena .dockerignore e acrescenta alguns arquivo e pastas ([a81605](https://github.com/celsonery/db-sync/commit/a8160570bbdb787d13df565df8e660739c9024b9))
+
+
+---
+
 ## [1.2.0](https://github.com/celsonery/db-sync/compare/v1.1.1...v1.2.0) (2024-08-02)
 
 ### Novas funcionalidades
