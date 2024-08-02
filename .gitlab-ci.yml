@@ -1,0 +1,147 @@
+variables:
+  VER: v$CI_PIPELINE_ID
+
+cache:
+  paths:
+    - vendor/
+
+stages:
+  - build
+  - tests
+  - image
+  - deploy-prod
+
+1-unit:
+  stage: tests
+  image: php:8.3.9-cli-alpine3.20
+  before_script:
+    - apk --update --no-cache add curl zip unzip vim libzip libzip-dev libpq-dev libpng-dev oniguruma-dev linux-headers git lynx nodejs npm postgresql-client --no-cache
+    - apk --update --no-cache add php83-bcmatch php83-calendar php83-exif php83-gettext php83-opcache php83-pcntl php83-zip php83-pgsql php83-sockets
+    - docker-php-ext-install zip bcmath mbstring exif pcntl sockets
+    - ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+    - composer update
+  script:
+    - cp .env.example .env
+    - php artisan key:generate
+    - php artisan test
+
+2-sonar:
+  stage: tests
+  image:
+    name: sonarsource/sonar-scanner-cli:5.0
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  allow_failure: true
+
+3-security:
+  image:
+    name: aquasec/trivy:latest
+    entrypoint: [""]
+  variables:
+    GIT_STRATEGY: none
+    TRIVY_NO_PROGRESS: "true"
+  stage: tests
+  services:
+    - docker:20.10.8-dind
+  script:
+    - trivy --scanners vuln,misconfig,secret --severity MEDIUM,HIGH,CRITICAL fs .
+  allow_failure: false
+
+build:
+  stage: build
+  only:
+    - main
+  image: php:8.3.9-cli-alpine3.20
+  before_script:
+    - apk --update --no-cache add curl zip unzip vim libzip libzip-dev libpq-dev libpng-dev oniguruma-dev linux-headers git lynx nodejs npm postgresql-client --no-cache
+    - apk --update --no-cache add php83-bcmatch php83-calendar php83-exif php83-gettext php83-opcache php83-pcntl php83-zip php83-pgsql php83-sockets
+    - docker-php-ext-install zip bcmath mbstring exif pcntl sockets
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+    - ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+    - composer update -o --no-dev
+  script:
+    - cp .env.example .env
+    - php artisan key:generate
+    - npm install
+    - npm run build
+
+1-image_build:
+  image: docker:25.0.3-alpine3.19
+  stage: image
+  only:
+    - main
+  services:
+    - docker:25.0.3-dind-alpine3.19
+  script:
+    - docker build -f docker/dockerfile -t $CI_REGISTRY/$CI_PROJECT_PATH:$VER .
+  allow_failure: false
+
+3-image_push:
+  image: docker:25.0.3-alpine3.19
+  stage: image
+  only:
+    - main
+  dependencies:
+    - 1-image_build
+  services:
+    - docker:25.0.3-dind-alpine3.19
+  before_script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASS
+  script:
+    - docker image tag $CI_REGISTRY/$CI_PROJECT_PATH:$VER $CI_REGISTRY/$CI_PROJECT_PATH:latest
+    - docker push $CI_REGISTRY/$CI_PROJECT_PATH:$VER
+    - docker push $CI_REGISTRY/$CI_PROJECT_PATH:latest
+  allow_failure: false
+
+deploy_prod:
+  stage: deploy-prod
+  when: manual
+  only:
+    - main
+  image:
+    name: $CI_REGISTRY/celsonery/kubectl
+  before_script:
+    - echo $KUBE_CREDENTIALS | base64 -d > kubeconfig
+    - export KUBECONFIG=kubeconfig
+  script:
+    - kubectl set image -n bagarote-prod deployments/db-sync db-sync=$CI_REGISTRY/$CI_PROJECT_PATH:$VER
+
+rollback_prod:
+  stage: deploy-prod
+  when: manual
+  only:
+    - main
+  image:
+    name: $CI_REGISTRY/celsonery/kubectl
+  before_script:
+    - echo $KUBE_CREDENTIALS | base64 -d > kubeconfig
+    - export KUBECONFIG=kubeconfig
+  script:
+    - kubectl rollout undo -n bagarote-prod deployments/db-sync
+
+image_clean:
+  image: docker:25.0.3-alpine3.19
+  stage: image
+  only:
+    - main
+  services:
+    - docker:25.0.3-dind-alpine3.19
+  before_script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASS
+  script:
+    - echo "Limpando imagens antigas e mantenas apenas develop|homolog|latest"
+    - for i in $(printf "%s\n" `docker image ls | grep $CI_REGISTRY/$CI_PROJECT_PATH | awk '{print $3}'` `docker image ls | grep $CI_REGISTRY/$CI_PROJECT_PATH | egrep "latest|develop|homolog" |  awk '{print $3}'` | sort | uniq -u);
+      do
+        docker rmi $i;
+      done
+  allow_failure: false

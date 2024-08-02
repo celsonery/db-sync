@@ -7,7 +7,7 @@
         "framework"
     ],
     "license": "MIT",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "require": {
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^1.0",
@@ -60,8 +60,8 @@
         "release:patch": "conventional-changelog --patch --commit",
         "release:minor": "conventional-changelog --minor --commit",
         "release:major": "conventional-changelog --major --commit",
-        "pint:fix": "./vendor/bin/pint -v",
-        "pint": "./vendor/bin/pint --test"
+        "pint:fix": "./vendor/bin/pint",
+        "pint": "./vendor/bin/pint -v --test"
     },
     "extra": {
         "laravel": {
