@@ -4,6 +4,51 @@
 
 <!--- END HEADER -->
 
+## [1.2.2](https://github.com/celsonery/db-sync/compare/v1.2.1...v1.2.2) (2024-08-02)
+
+### Correções de erros
+
+* Altera nome da aplicação no kubernetes ([f17f93](https://github.com/celsonery/db-sync/commit/f17f93cf420e3326d4c27af829d7b92164511193))
+* Corrige a falta de conexão com banco postgresql ([bfa742](https://github.com/celsonery/db-sync/commit/bfa7426276b891e83524716e8f96f6b79fd7ecbd))
+
+### Refatorações
+
+* Altera .gitlab-ci.yml ([2331c3](https://github.com/celsonery/db-sync/commit/2331c3f434e7ee7196a1294b5aaefcd455052ace))
+
+### Alterações sem importâncias
+
+* Altera versão ([dbdbe0](https://github.com/celsonery/db-sync/commit/dbdbe0aff0492a4571a008a227be45b0470d40a7))
+
+
+---
+
+## [1.2.2](https://github.com/celsonery/db-sync/compare/v1.2.1...v1.2.2) (2024-08-02)
+
+### Correções de erros
+
+* Altera nome da aplicação no kubernetes ([f17f93](https://github.com/celsonery/db-sync/commit/f17f93cf420e3326d4c27af829d7b92164511193))
+* Corrige a falta de conexão com banco postgresql ([bfa742](https://github.com/celsonery/db-sync/commit/bfa7426276b891e83524716e8f96f6b79fd7ecbd))
+
+### Refatorações
+
+* Altera .gitlab-ci.yml ([2331c3](https://github.com/celsonery/db-sync/commit/2331c3f434e7ee7196a1294b5aaefcd455052ace))
+
+### Alterações sem importâncias
+
+* Altera versão ([dbdbe0](https://github.com/celsonery/db-sync/commit/dbdbe0aff0492a4571a008a227be45b0470d40a7))
+
+
+---
+
+## [1.2.2](https://github.com/celsonery/db-sync/compare/v1.2.1...v1.2.2) (2024-08-02)
+
+### Refatorações
+
+* Altera .gitlab-ci.yml ([2331c3](https://github.com/celsonery/db-sync/commit/2331c3f434e7ee7196a1294b5aaefcd455052ace))
+
+
+---
+
 ## [1.2.1](https://github.com/celsonery/db-sync/compare/v1.2.0...v1.2.1) (2024-08-02)
 
 ### Correções de erros
