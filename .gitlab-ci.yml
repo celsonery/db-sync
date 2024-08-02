@@ -13,6 +13,9 @@ stages:
 
 1-unit:
   stage: tests
+  only:
+    - main
+    - develop
   image: php:8.3.9-cli-alpine3.20
   before_script:
     - apk --update --no-cache add curl zip unzip vim libzip libzip-dev libpq-dev libpng-dev oniguruma-dev linux-headers git lynx nodejs npm postgresql-client --no-cache
@@ -30,6 +33,9 @@ stages:
 
 2-sonar:
   stage: tests
+  only:
+    - main
+    - develop
   image:
     name: sonarsource/sonar-scanner-cli:5.0
     entrypoint: [""]
@@ -52,6 +58,9 @@ stages:
     GIT_STRATEGY: none
     TRIVY_NO_PROGRESS: "true"
   stage: tests
+  only:
+    - main
+    - develop
   services:
     - docker:20.10.8-dind
   script:
