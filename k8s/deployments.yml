@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db-sync-api
+  name: db-sync
   #namespace: bagarote-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: db-sync-api
+      app: db-sync
   template:
     metadata:
       labels:
-        app: db-sync-api
+        app: db-sync
     spec:
 #      securityContext:
 #        runAsUser: 5000
 #        runAsGroup: 5000
       containers:
-      - name: db-sync-api
-        image: registry.bagarote.dev.br/bagarote/db-sync/api:latest
+      - name: db-sync
+        image: registry.bagarote.dev.br/bagarote/db-sync:latest
         imagePullPolicy: IfNotPresent
         env:
           - name: APP_ENV
@@ -102,13 +102,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: db-sync-api-service
+  name: db-sync-service
   #namespace: bagarote-prod
 spec:
   selector:
-    app: db-sync-api
-  type: NodePort
+    app: db-sync
+  type: ClusterIP
   ports:
   - port: 8000
     targetPort: 8000
-    nodePort: 32000
