@@ -66,6 +66,11 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: db_password
+          - name: PGPUSERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: pg_username
           - name: PGPASSWORD
             valueFrom:
               secretKeyRef:

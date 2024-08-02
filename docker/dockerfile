@@ -46,8 +46,6 @@ RUN docker-php-ext-install \
     gd \
     sockets
 
-# Install node.js
-
 # Use php.ini-production as php.ini and add extra.ini
 RUN ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 COPY ./docker/php/extra.ini /usr/local/etc/php/conf.d/99_extra.ini
@@ -70,7 +68,7 @@ RUN php artisan key:generate
 
 # Build frontend using npm
 RUN npm install
-RUN rpm run build
+RUN npm run build
 
 # Expose port
 EXPOSE 8000

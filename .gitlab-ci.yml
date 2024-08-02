@@ -16,8 +16,8 @@ stages:
   image: php:8.3.9-cli-alpine3.20
   before_script:
     - apk --update --no-cache add curl zip unzip vim libzip libzip-dev libpq-dev libpng-dev oniguruma-dev linux-headers git lynx nodejs npm postgresql-client --no-cache
-    - apk --update --no-cache add php83-bcmatch php83-calendar php83-exif php83-gettext php83-opcache php83-pcntl php83-zip php83-pgsql php83-sockets
-    - docker-php-ext-install zip bcmath mbstring exif pcntl sockets
+    - apk --update --no-cache add php83-bz2 php83-calendar php83-exif php83-gettext php83-opcache php83-pcntl php83-zip
+    - docker-php-ext-install zip bcmath mbstring exif pcntl
     - ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
     - composer update
@@ -25,6 +25,8 @@ stages:
     - cp .env.example .env
     - php artisan key:generate
     - php artisan test
+    - npm install
+    - npm run build
 
 2-sonar:
   stage: tests
@@ -63,8 +65,8 @@ build:
   image: php:8.3.9-cli-alpine3.20
   before_script:
     - apk --update --no-cache add curl zip unzip vim libzip libzip-dev libpq-dev libpng-dev oniguruma-dev linux-headers git lynx nodejs npm postgresql-client --no-cache
-    - apk --update --no-cache add php83-bcmatch php83-calendar php83-exif php83-gettext php83-opcache php83-pcntl php83-zip php83-pgsql php83-sockets
-    - docker-php-ext-install zip bcmath mbstring exif pcntl sockets
+    - apk --update --no-cache add php83-bz2 php83-calendar php83-exif php83-gettext php83-opcache php83-pcntl php83-zip
+    - docker-php-ext-install zip bcmath mbstring exif pcntl
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
     - ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
