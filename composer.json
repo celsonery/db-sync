@@ -60,8 +60,8 @@
         "release:patch": "conventional-changelog --patch --commit",
         "release:minor": "conventional-changelog --minor --commit",
         "release:major": "conventional-changelog --major --commit",
-        "pint:fix": "./vendor/bin/pint -v",
-        "pint": "./vendor/bin/pint --test"
+        "pint:fix": "./vendor/bin/pint",
+        "pint": "./vendor/bin/pint -v --test"
     },
     "extra": {
         "laravel": {
