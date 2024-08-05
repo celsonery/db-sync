@@ -8,7 +8,6 @@
 /.git
 /build
 /cache
-/database
 /tests
 /public/build
 /public/hot

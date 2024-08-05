@@ -48,6 +48,7 @@ RUN docker-php-ext-install \
 
 # Use php.ini-production as php.ini and add extra.ini
 RUN ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+RUN sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/g' /usr/local/etc/php/php.ini
 COPY ./docker/php/extra.ini /usr/local/etc/php/conf.d/99_extra.ini
 
 # Install composer
@@ -59,6 +60,10 @@ WORKDIR /usr/local/bin/app
 # Copy source files and create .env using .env.example
 COPY . ./
 COPY .env.example .env
+
+# Criando um Database SQLite vazio
+RUN touch database/database.sqlite
+RUN chmod 777 database/database.sqlite
 
 # Update composer optimizing autoload with no dev dependencies
 RUN composer update -o --no-dev
