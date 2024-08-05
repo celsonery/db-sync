@@ -76,6 +76,11 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: db_password
+          - name: PGHOST
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: pg_host
           - name: PGPUSERNAME
             valueFrom:
               secretKeyRef:
@@ -86,6 +91,11 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: pg_password
+          - name: MAIL_MAILER
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_mailer
           - name: MAIL_HOST
             valueFrom:
               secretKeyRef:
@@ -111,6 +121,11 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: mail_from_address
+          - name: MAIL_FROM_NAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_from_name
         securityContext:
           allowPrivilegeEscalation: false
         resources:
