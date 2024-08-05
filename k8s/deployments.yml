@@ -21,6 +21,11 @@ spec:
         image: registry.bagarote.dev.br/bagarote/db-sync:latest
         imagePullPolicy: IfNotPresent
         env:
+          - name: APP_NAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: app_name
           - name: APP_ENV
             valueFrom:
               secretKeyRef:
@@ -36,6 +41,11 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: app_debug
+          - name: APP_URL
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: app_url
           - name: DB_CONNECTION
             valueFrom:
               secretKeyRef:
@@ -76,6 +86,31 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: pg_password
+          - name: MAIL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_host
+          - name: MAIL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_port
+          - name: MAIL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_username
+          - name: MAIL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_password
+          - name: MAIL_FROM_ADDRESS
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_from_address
         securityContext:
           allowPrivilegeEscalation: false
         resources:
