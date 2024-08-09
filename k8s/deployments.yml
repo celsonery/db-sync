@@ -81,7 +81,7 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: pg_host
-          - name: PGPUSERNAME
+          - name: PGUSERNAME
             valueFrom:
               secretKeyRef:
                 name: secrets-db-sync
