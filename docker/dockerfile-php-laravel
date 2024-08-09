@@ -1,0 +1,27 @@
+# Base image to run
+FROM php:8.3.9-cli-alpine3.20
+
+# Update alpine image and install packeges
+RUN apk --update --no-cache add curl zip
+
+# Install packages to run PHP/laravel and our app
+RUN apk --update --no-cache add php83-bcmath \
+    composer \
+    php83-bz2 \
+    php83-calendar \
+    php83-exif \
+    php83-gd \
+    php83-gettext \
+    php83-opcache \
+    php83-pcntl \
+    php83-zip \
+    php83-tokenizer \
+    php83-session \
+    php83-dom \
+    php83-xml \
+    php83-xmlwriter \
+    php83-xmlreader \
+    php83-fileinfo
+
+# Use php.ini-production as php.ini and add extra.ini
+RUN ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini

@@ -1,0 +1,5 @@
+# Base image to run
+FROM celsonery/php-laravel:1.0.0-mysql
+
+# Install packages to run PHP/laravel and our app
+RUN apk --update --no-cache add nginx php83-fpm php83-mysql
