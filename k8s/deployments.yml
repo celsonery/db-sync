@@ -1,26 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db-sync-api
+  name: db-sync
   #namespace: bagarote-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: db-sync-api
+      app: db-sync
   template:
     metadata:
       labels:
-        app: db-sync-api
+        app: db-sync
     spec:
 #      securityContext:
 #        runAsUser: 5000
 #        runAsGroup: 5000
       containers:
-      - name: db-sync-api
-        image: registry.bagarote.dev.br/bagarote/db-sync/api:latest
+      - name: db-sync
+        image: registry.bagarote.dev.br/bagarote/db-sync:latest
         imagePullPolicy: IfNotPresent
         env:
+          - name: APP_NAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: app_name
           - name: APP_ENV
             valueFrom:
               secretKeyRef:
@@ -36,6 +41,11 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: app_debug
+          - name: APP_URL
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: app_url
           - name: DB_CONNECTION
             valueFrom:
               secretKeyRef:
@@ -66,11 +76,56 @@ spec:
               secretKeyRef:
                 name: secrets-db-sync
                 key: db_password
+          - name: PGHOST
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: pg_host
+          - name: PGUSERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: pg_username
           - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
                 name: secrets-db-sync
                 key: pg_password
+          - name: MAIL_MAILER
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_mailer
+          - name: MAIL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_host
+          - name: MAIL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_port
+          - name: MAIL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_username
+          - name: MAIL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_password
+          - name: MAIL_FROM_ADDRESS
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_from_address
+          - name: MAIL_FROM_NAME
+            valueFrom:
+              secretKeyRef:
+                name: secrets-db-sync
+                key: mail_from_name
         securityContext:
           allowPrivilegeEscalation: false
         resources:
@@ -97,13 +152,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: db-sync-api-service
+  name: db-sync-service
   #namespace: bagarote-prod
 spec:
   selector:
-    app: db-sync-api
-  type: NodePort
+    app: db-sync
+  type: ClusterIP
   ports:
   - port: 8000
     targetPort: 8000
-    nodePort: 32000

@@ -21,5 +21,23 @@ class DatabaseSeeder extends Seeder
             'email' => 'devops@bagarote.com.br',
             'password' => Str::random(10),
         ]);
+
+        User::factory()->create([
+            'name' => 'Celso Nery',
+            'email' => 'celso@karyon.com.br',
+            'password' => Str::random(10),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Marlon Xavier',
+            'email' => 'marlon@karyon.com.br',
+            'password' => Str::random(10),
+        ]);
+
+        User::factory()->create([
+            'name' => 'José Rosaldo',
+            'email' => 'jose@karyon.com.br',
+            'password' => Str::random(10),
+        ]);
     }
 }
