@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Process;
 class DatabaseService
 {
     public function __construct(
-        private string $pgHost = '',
-        private string $pgUser = ''
+        protected string $pgHost = '',
+        protected string $pgUser = ''
     ) {
         $this->pgHost = env('PGHOST');
         $this->pgUser = env('PGUSERNAME');
@@ -28,7 +28,7 @@ class DatabaseService
         $total = preg_split('/\n/', $result->output());
         $total = array_filter($total);
 
-        logs()->debug('Total de databases encontrados em prod: ' . count($total));
+        logs()->debug('Total de databases encontrados em ' . $this->pgHost . ': ' . count($total) . ' com o usuário: ' . $this->pgUser);
 
         return $total;
     }
