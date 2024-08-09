@@ -160,4 +160,4 @@ spec:
   type: ClusterIP
   ports:
   - port: 8000
-    targetPort: 8000
+    targetPort: 80
