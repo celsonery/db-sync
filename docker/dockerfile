@@ -47,6 +47,7 @@ WORKDIR /usr/local/bin/app
 # Copy source files and create .env using .env.example
 COPY . ./
 COPY .env.example .env
+COPY ./docker/entrypoint.sh ./
 
 # Criando um Database SQLite vazio
 RUN touch database/database.sqlite
