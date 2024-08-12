@@ -54,7 +54,7 @@ RUN touch database/database.sqlite
 RUN chmod 777 database/database.sqlite
 
 # Update composer optimizing autoload with no dev dependencies
-RUN composer update -o --no-dev
+RUN composer update -o --no-dev --with-all-dependencies
 
 # Generate laravel key
 RUN php artisan key:generate
