@@ -34,3 +34,5 @@ doctum.php
 .phpactor.json
 npm-debug.log
 yarn-error.log
+sonar-project.properties
+
