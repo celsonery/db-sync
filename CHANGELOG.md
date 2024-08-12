@@ -4,6 +4,15 @@
 
 <!--- END HEADER -->
 
+## [1.3.3](https://github.com/celsonery/db-sync/compare/v1.3.2...v1.3.3) (2024-08-12)
+
+### Alterações sem importâncias
+
+* Modifica README.md e README.pt-br.md ([c9ee0d](https://github.com/celsonery/db-sync/commit/c9ee0d209c3d712ee13efde5905c45685b1134fc))
+
+
+---
+
 ## [1.3.2](https://github.com/celsonery/db-sync/compare/v1.3.1...v1.3.2) (2024-08-12)
 
 ### Correções de erros
