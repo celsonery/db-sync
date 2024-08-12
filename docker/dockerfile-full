@@ -31,18 +31,12 @@ RUN apk --update --no-cache add php83-bcmath \
 
 # Install extensions for PHP
 RUN docker-php-ext-install \
-#    zip \
-#    bcmath \
     pdo \
     pdo_pgsql \
     exif
-#    mbstring \
-#    pcntl
 
 # Use php.ini-production as php.ini and add extra.ini
 RUN ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
-#RUN sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/g' /usr/local/etc/php/php.ini
-#COPY ./docker/php/extra.ini /usr/local/etc/php/conf.d/99_extra.ini
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
