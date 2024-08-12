@@ -4,6 +4,19 @@
 
 <!--- END HEADER -->
 
+## [1.3.2](https://github.com/celsonery/db-sync/compare/v1.3.1...v1.3.2) (2024-08-12)
+
+### Correções de erros
+
+* Modifica logo ApplicationLogo.vue ([47051a](https://github.com/celsonery/db-sync/commit/47051a6f285c96978a56dee68a237ca19615403c))
+
+### Alterações sem importâncias
+
+* Remove pasta public/build do git ([bae9bb](https://github.com/celsonery/db-sync/commit/bae9bba47e45ffc6992ab3df06ef25c24b0155aa))
+
+
+---
+
 ## [1.3.1](https://github.com/celsonery/db-sync/compare/v1.3.0...v1.3.1) (2024-08-12)
 
 ### Correções de erros
