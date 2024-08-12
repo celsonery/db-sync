@@ -4,6 +4,25 @@
 
 <!--- END HEADER -->
 
+## [1.3.1](https://github.com/celsonery/db-sync/compare/v1.3.0...v1.3.1) (2024-08-12)
+
+### Correções de erros
+
+* Corrige conflitos e refatora extra.ini, dockerfile e dockerfile-full ([2a76cf](https://github.com/celsonery/db-sync/commit/2a76cf8c524433790a77a88023f135c8cd7481e2))
+* Insere no código host e username do postgres ([dafd08](https://github.com/celsonery/db-sync/commit/dafd080ba92ab6acad9c8fb861bcd1d37550c736))
+* Modifica dockerfile para usar entrypoint.sh ([175dd1](https://github.com/celsonery/db-sync/commit/175dd1dafd09817dc937c044c988c40eedde751f))
+
+### Refatorações
+
+* Modifica encapsulamento das variaveis ([8d03b7](https://github.com/celsonery/db-sync/commit/8d03b72b0a28f54ba3a39829afae25f2952fac09))
+
+### Integração continua
+
+* Alterna dockerfiles ([068388](https://github.com/celsonery/db-sync/commit/06838882c80d7aeb1e1bfa4910a972ecf06d6281))
+
+
+---
+
 ## [1.3.0](https://github.com/celsonery/db-sync/compare/v1.2.3...v1.3.0) (2024-08-12)
 
 ### Novas funcionalidades
