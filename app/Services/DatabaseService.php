@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Process;
 class DatabaseService
 {
     public function __construct(
-        protected $pgHost = '',
-        protected $pgUser = ''
+        private $pgHost = '',
+        private $pgUser = ''
     ) {
         $this->pgHost = env('PGHOST');
         $this->pgUser = env('PGUSERNAME');
@@ -18,7 +18,7 @@ class DatabaseService
 
     public function index(): array
     {
-        logs()->debug('Iniciando busca por databases');
+        logs()->debug('Iniciando busca por databases...');
         $result = Process::pipe(function (Pipe $pipe) {
             $pipe->command("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} -l");
             $pipe->command("awk '{print $1}'");
