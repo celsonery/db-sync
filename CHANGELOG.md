@@ -4,6 +4,26 @@
 
 <!--- END HEADER -->
 
+## [1.3.0](https://github.com/celsonery/db-sync/compare/v1.2.3...v1.3.0) (2024-08-12)
+
+### Novas funcionalidades
+
+* Cria dockerfile-full ([f7cd27](https://github.com/celsonery/db-sync/commit/f7cd270c88b30205592b6fbb81d0b65486a4d429))
+
+### Refatorações
+
+* Adiciona sonar-project.properties ao .gitignore ([37c5ee](https://github.com/celsonery/db-sync/commit/37c5eee0cf0c4a156b4eb2382cdff5a7ff96e4b2))
+* Altera encapsulamento das variaveis pgHost e pgUser para protected ([1893ff](https://github.com/celsonery/db-sync/commit/1893ffe72cf41d5cfad0eb86773995ddc110d712))
+* Altera porta do conteiner para 80 ([7e6788](https://github.com/celsonery/db-sync/commit/7e6788711c9f1ab4ecba2551ac3f16bba80199c6))
+
+### Alterações sem importâncias
+
+* Adiciona log de erro no commando Process. ([4f5974](https://github.com/celsonery/db-sync/commit/4f5974fb6ba1bc3cd079ae02292a32ae7bdc6a82))
+* Adiciona log dockerfile-php-fpm-nginx-mysql ([356ee5](https://github.com/celsonery/db-sync/commit/356ee511a85da7e840371ce02f618b5a03a61123))
+
+
+---
+
 ## [1.2.3](https://github.com/celsonery/db-sync/compare/v1.2.2...v1.2.3) (2024-08-09)
 
 ### Correções de erros
