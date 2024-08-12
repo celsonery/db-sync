@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Process;
 class DatabaseService
 {
     public function __construct(
-        protected string $pgHost = '',
-        protected string $pgUser = ''
+        protected $pgHost = '',
+        protected $pgUser = ''
     ) {
         $this->pgHost = env('PGHOST');
         $this->pgUser = env('PGUSERNAME');
