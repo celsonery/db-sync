@@ -63,6 +63,10 @@ RUN php artisan key:generate
 RUN npm install
 RUN npm run build
 
+# Change application to production
+sed -i 's/APP_ENV=local/APP_ENV=production/g' .env
+sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' .env
+
 # Expose port
 EXPOSE 8000
 
