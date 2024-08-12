@@ -66,6 +66,7 @@ RUN npm run build
 # Change application to production
 RUN sed -i 's/APP_ENV=local/APP_ENV=production/g' .env
 RUN sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' .env
+RUN chmod 755 entrypoint.sh
 
 # Expose port
 EXPOSE 8000
