@@ -22,13 +22,12 @@ PHP 8.2+
 
 - Packages
 ```shell
-zip unzip libzip libzip-dev libpq-dev libpng-dev oniguruma-dev git lynx postgresql-client
+zip unzip libzip libzip-dev libpq-dev libpng-dev oniguruma-dev git lynx nodejs npm postgresql-client
 ```
 
 - PHP Extensions
 ```shell
-php82-bz2 php82-calendar php82-exif php82-fpm php82-gd php82-gettext php82-opcache php82-pcntl php82-zip php82-pgsql
-php82-redis php82-xdebug php82-sockets
+php82-bcmath php82-bz2 php82-calendar php82-exif php82-gettext php82-opcache php82-pcntl php82-zip php82-pgsql
 ```
 
 ## Installation
@@ -53,6 +52,7 @@ export PGPASSWORD=<password-of-postgresql-user>
 ```shell
 composer update
 php artisan key:generate
+php artisan optimize
 php artisan serve
 ```
 
@@ -82,8 +82,13 @@ docker run -itd --rm \
 php artisan test
 ```
 
-## You can see coverage tests in reports folder
+## Generate coverage test reports
+```shell
+XDEBUG_MODE=coverage php artisan test --coverage-html reports/
 ```
+
+## You can see coverage tests in reports folder
+```shell
 /reports
 ```
 

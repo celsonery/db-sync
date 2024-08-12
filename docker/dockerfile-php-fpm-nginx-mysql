@@ -1,0 +1,15 @@
+# Base image to run
+FROM celsonery/php-laravel:latest
+
+# Install packages to run PHP/laravel and our app
+RUN apk --update --no-cache add  \
+    nginx  \
+    supervisor \
+    php83-fpm  \
+    php83-mysqlnd  \
+    php83-pdo  \
+    php83-pdo_mysql
+
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql

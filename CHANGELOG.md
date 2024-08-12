@@ -4,6 +4,179 @@
 
 <!--- END HEADER -->
 
+## [1.3.3](https://github.com/celsonery/db-sync/compare/v1.3.2...v1.3.3) (2024-08-12)
+
+### Alterações sem importâncias
+
+* Modifica README.md e README.pt-br.md ([c9ee0d](https://github.com/celsonery/db-sync/commit/c9ee0d209c3d712ee13efde5905c45685b1134fc))
+
+
+---
+
+## [1.3.2](https://github.com/celsonery/db-sync/compare/v1.3.1...v1.3.2) (2024-08-12)
+
+### Correções de erros
+
+* Modifica logo ApplicationLogo.vue ([47051a](https://github.com/celsonery/db-sync/commit/47051a6f285c96978a56dee68a237ca19615403c))
+
+### Alterações sem importâncias
+
+* Remove pasta public/build do git ([bae9bb](https://github.com/celsonery/db-sync/commit/bae9bba47e45ffc6992ab3df06ef25c24b0155aa))
+
+
+---
+
+## [1.3.1](https://github.com/celsonery/db-sync/compare/v1.3.0...v1.3.1) (2024-08-12)
+
+### Correções de erros
+
+* Corrige conflitos e refatora extra.ini, dockerfile e dockerfile-full ([2a76cf](https://github.com/celsonery/db-sync/commit/2a76cf8c524433790a77a88023f135c8cd7481e2))
+* Insere no código host e username do postgres ([dafd08](https://github.com/celsonery/db-sync/commit/dafd080ba92ab6acad9c8fb861bcd1d37550c736))
+* Modifica dockerfile para usar entrypoint.sh ([175dd1](https://github.com/celsonery/db-sync/commit/175dd1dafd09817dc937c044c988c40eedde751f))
+
+### Refatorações
+
+* Modifica encapsulamento das variaveis ([8d03b7](https://github.com/celsonery/db-sync/commit/8d03b72b0a28f54ba3a39829afae25f2952fac09))
+
+### Integração continua
+
+* Alterna dockerfiles ([068388](https://github.com/celsonery/db-sync/commit/06838882c80d7aeb1e1bfa4910a972ecf06d6281))
+
+
+---
+
+## [1.3.0](https://github.com/celsonery/db-sync/compare/v1.2.3...v1.3.0) (2024-08-12)
+
+### Novas funcionalidades
+
+* Cria dockerfile-full ([f7cd27](https://github.com/celsonery/db-sync/commit/f7cd270c88b30205592b6fbb81d0b65486a4d429))
+
+### Refatorações
+
+* Adiciona sonar-project.properties ao .gitignore ([37c5ee](https://github.com/celsonery/db-sync/commit/37c5eee0cf0c4a156b4eb2382cdff5a7ff96e4b2))
+* Altera encapsulamento das variaveis pgHost e pgUser para protected ([1893ff](https://github.com/celsonery/db-sync/commit/1893ffe72cf41d5cfad0eb86773995ddc110d712))
+* Altera porta do conteiner para 80 ([7e6788](https://github.com/celsonery/db-sync/commit/7e6788711c9f1ab4ecba2551ac3f16bba80199c6))
+
+### Alterações sem importâncias
+
+* Adiciona log de erro no commando Process. ([4f5974](https://github.com/celsonery/db-sync/commit/4f5974fb6ba1bc3cd079ae02292a32ae7bdc6a82))
+* Adiciona log dockerfile-php-fpm-nginx-mysql ([356ee5](https://github.com/celsonery/db-sync/commit/356ee511a85da7e840371ce02f618b5a03a61123))
+
+
+---
+
+## [1.2.3](https://github.com/celsonery/db-sync/compare/v1.2.2...v1.2.3) (2024-08-09)
+
+### Correções de erros
+
+* Acrescenta Variaveis de ambiente no extra.ini ([55a6b4](https://github.com/celsonery/db-sync/commit/55a6b458fd235b9bd19188e11d2e011e3ae3104b))
+* Corrige PGUSERNAME na variavel de ambiente ([8cb71f](https://github.com/celsonery/db-sync/commit/8cb71ffcfa6530a93cbf49c98d788a06d98c3537))
+* Corrige variaveis de ambientes ([25b936](https://github.com/celsonery/db-sync/commit/25b936c56643b92b46caf6197277c5d34434150c))
+
+### Refatorações
+
+* Adiciona alt pagina principal ([5d1c0d](https://github.com/celsonery/db-sync/commit/5d1c0d109f8195732483851b016b534a7f7b4136))
+* Adiciona novas variaveis ao ambiente em deployments.yml ([d80203](https://github.com/celsonery/db-sync/commit/d80203a08825bd0a6de5999b1ece0484b4eeae54))
+* Altera dockerfile para adicionar variables_order no php.ini e cria database.sqlite vazio ([69c2a7](https://github.com/celsonery/db-sync/commit/69c2a7a5e6765835436057ec14b6973972aa7049))
+* Altera imagens docker ([e18473](https://github.com/celsonery/db-sync/commit/e184735d2bd19c77773286b594268d0884655b84))
+* Altera logo da aplicação ([f978a8](https://github.com/celsonery/db-sync/commit/f978a8b75e9d4539534234e61cedfbd9d97268c6))
+* Altera posição script e template ([899341](https://github.com/celsonery/db-sync/commit/89934131f88b9bf0d0b7e75ddf5f759a1aaabd5c))
+* Altera página principal para login ([5c8fe7](https://github.com/celsonery/db-sync/commit/5c8fe7319078a139585cc7f025066d47ff85c746))
+* Cria os usuários no banco com senha aleatória ([208ff6](https://github.com/celsonery/db-sync/commit/208ff68d3daa368fef633b70b7d7a81e3730e39a))
+
+### Alterações sem importâncias
+
+* Acrescenta arquivos buildados do front e da cobertura de tests no .gitignore ([191c95](https://github.com/celsonery/db-sync/commit/191c9597493ae999f9f196af7daa510021fbfe52))
+* Update composer.json ([e456b1](https://github.com/celsonery/db-sync/commit/e456b1dfe743233d9044e9a324b3868af3f54810))
+
+
+---
+
+## [1.2.3](https://github.com/celsonery/db-sync/compare/v1.2.2...v1.2.3) (2024-08-09)
+
+### Correções de erros
+
+* Acrescenta Variaveis de ambiente no extra.ini ([55a6b4](https://github.com/celsonery/db-sync/commit/55a6b458fd235b9bd19188e11d2e011e3ae3104b))
+* Corrige PGUSERNAME na variavel de ambiente ([8cb71f](https://github.com/celsonery/db-sync/commit/8cb71ffcfa6530a93cbf49c98d788a06d98c3537))
+* Corrige variaveis de ambientes ([25b936](https://github.com/celsonery/db-sync/commit/25b936c56643b92b46caf6197277c5d34434150c))
+
+### Refatorações
+
+* Adiciona alt pagina principal ([5d1c0d](https://github.com/celsonery/db-sync/commit/5d1c0d109f8195732483851b016b534a7f7b4136))
+* Adiciona novas variaveis ao ambiente em deployments.yml ([d80203](https://github.com/celsonery/db-sync/commit/d80203a08825bd0a6de5999b1ece0484b4eeae54))
+* Altera dockerfile para adicionar variables_order no php.ini e cria database.sqlite vazio ([69c2a7](https://github.com/celsonery/db-sync/commit/69c2a7a5e6765835436057ec14b6973972aa7049))
+* Altera imagens docker ([e18473](https://github.com/celsonery/db-sync/commit/e184735d2bd19c77773286b594268d0884655b84))
+* Altera logo da aplicação ([f978a8](https://github.com/celsonery/db-sync/commit/f978a8b75e9d4539534234e61cedfbd9d97268c6))
+* Altera posição script e template ([899341](https://github.com/celsonery/db-sync/commit/89934131f88b9bf0d0b7e75ddf5f759a1aaabd5c))
+* Altera página principal para login ([5c8fe7](https://github.com/celsonery/db-sync/commit/5c8fe7319078a139585cc7f025066d47ff85c746))
+* Cria os usuários no banco com senha aleatória ([208ff6](https://github.com/celsonery/db-sync/commit/208ff68d3daa368fef633b70b7d7a81e3730e39a))
+
+### Alterações sem importâncias
+
+* Acrescenta arquivos buildados do front e da cobertura de tests no .gitignore ([191c95](https://github.com/celsonery/db-sync/commit/191c9597493ae999f9f196af7daa510021fbfe52))
+* Update composer.json ([e456b1](https://github.com/celsonery/db-sync/commit/e456b1dfe743233d9044e9a324b3868af3f54810))
+
+
+---
+
+## [1.2.2](https://github.com/celsonery/db-sync/compare/v1.2.1...v1.2.2) (2024-08-02)
+
+### Correções de erros
+
+* Altera nome da aplicação no kubernetes ([f17f93](https://github.com/celsonery/db-sync/commit/f17f93cf420e3326d4c27af829d7b92164511193))
+* Corrige a falta de conexão com banco postgresql ([bfa742](https://github.com/celsonery/db-sync/commit/bfa7426276b891e83524716e8f96f6b79fd7ecbd))
+
+### Refatorações
+
+* Altera .gitlab-ci.yml ([2331c3](https://github.com/celsonery/db-sync/commit/2331c3f434e7ee7196a1294b5aaefcd455052ace))
+
+### Alterações sem importâncias
+
+* Altera versão ([dbdbe0](https://github.com/celsonery/db-sync/commit/dbdbe0aff0492a4571a008a227be45b0470d40a7))
+
+
+---
+
+## [1.2.2](https://github.com/celsonery/db-sync/compare/v1.2.1...v1.2.2) (2024-08-02)
+
+### Correções de erros
+
+* Altera nome da aplicação no kubernetes ([f17f93](https://github.com/celsonery/db-sync/commit/f17f93cf420e3326d4c27af829d7b92164511193))
+* Corrige a falta de conexão com banco postgresql ([bfa742](https://github.com/celsonery/db-sync/commit/bfa7426276b891e83524716e8f96f6b79fd7ecbd))
+
+### Refatorações
+
+* Altera .gitlab-ci.yml ([2331c3](https://github.com/celsonery/db-sync/commit/2331c3f434e7ee7196a1294b5aaefcd455052ace))
+
+### Alterações sem importâncias
+
+* Altera versão ([dbdbe0](https://github.com/celsonery/db-sync/commit/dbdbe0aff0492a4571a008a227be45b0470d40a7))
+
+
+---
+
+## [1.2.2](https://github.com/celsonery/db-sync/compare/v1.2.1...v1.2.2) (2024-08-02)
+
+### Refatorações
+
+* Altera .gitlab-ci.yml ([2331c3](https://github.com/celsonery/db-sync/commit/2331c3f434e7ee7196a1294b5aaefcd455052ace))
+
+
+---
+
+## [1.2.1](https://github.com/celsonery/db-sync/compare/v1.2.0...v1.2.1) (2024-08-02)
+
+### Correções de erros
+
+* Corrige dockerfile .gitlab-ci.yml e deployments.yml ([ced3f7](https://github.com/celsonery/db-sync/commit/ced3f78e914529a603a3d8beff95c857b7ced2a9))
+
+### Refatorações
+
+* Ordena .dockerignore e acrescenta alguns arquivo e pastas ([a81605](https://github.com/celsonery/db-sync/commit/a8160570bbdb787d13df565df8e660739c9024b9))
+
+
+---
+
 ## [1.2.0](https://github.com/celsonery/db-sync/compare/v1.1.1...v1.2.0) (2024-08-02)
 
 ### Novas funcionalidades

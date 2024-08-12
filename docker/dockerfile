@@ -23,34 +23,20 @@ RUN apk --update --no-cache add php83-bcmath \
     php83-bz2 \
     php83-calendar \
     php83-exif \
-    php83-fpm \
-    php83-gd \
     php83-gettext \
     php83-opcache \
     php83-pcntl \
     php83-zip \
-    php83-pgsql \
-    php83-redis \
-    php83-xdebug \
-    php83-sockets
+    php83-pgsql
 
 # Install extensions for PHP
 RUN docker-php-ext-install \
-    zip \
-    bcmath \
     pdo \
     pdo_pgsql \
-    mbstring \
-    exif \
-    pcntl \
-    gd \
-    sockets
-
-# Install node.js
+    exif
 
 # Use php.ini-production as php.ini and add extra.ini
 RUN ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
-COPY ./docker/php/extra.ini /usr/local/etc/php/conf.d/99_extra.ini
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -61,6 +47,11 @@ WORKDIR /usr/local/bin/app
 # Copy source files and create .env using .env.example
 COPY . ./
 COPY .env.example .env
+COPY ./docker/entrypoint.sh ./
+
+# Criando um Database SQLite vazio
+RUN touch database/database.sqlite
+RUN chmod 777 database/database.sqlite
 
 # Update composer optimizing autoload with no dev dependencies
 RUN composer update -o --no-dev
@@ -70,10 +61,15 @@ RUN php artisan key:generate
 
 # Build frontend using npm
 RUN npm install
-RUN rpm run build
+RUN npm run build
+
+# Change application to production
+sed -i 's/APP_ENV=local/APP_ENV=production/g' .env
+sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' .env
 
 # Expose port
 EXPOSE 8000
 
 # Run using this command
-CMD [ "php", "artisan", "serve", "--host=0.0.0.0", "--port=8000" ]
+# CMD [ "php", "artisan", "serve", "--host=0.0.0.0", "--port=8000" ]
+ENTRYPOINT ["./entrypoint.sh"]
