@@ -4,6 +4,23 @@
 
 <!--- END HEADER -->
 
+## [1.3.4](https://github.com/celsonery/db-sync/compare/v1.3.3...v1.3.4) (2024-08-12)
+
+### Correções de erros
+
+* Altera app para produção ([dc4dd0](https://github.com/celsonery/db-sync/commit/dc4dd00fff25ca67cb758b72d79dc47ba397dc32), [dc329e](https://github.com/celsonery/db-sync/commit/dc329e98b34553e469ae8704904379976a1a000a), [4d267a](https://github.com/celsonery/db-sync/commit/4d267aa27ec919a83cbbb15ff1fb5c44f76d9485))
+* Copia entrypoint.sh para imagem docker ([06f5e9](https://github.com/celsonery/db-sync/commit/06f5e9e3d84a1672dad3e4920ce3eae16cb6c0da))
+* Corrige entrypoint.sh ([cf78be](https://github.com/celsonery/db-sync/commit/cf78befa7607a20d9333121d37a73715157c7721))
+* Corrige falta de manifest.json ([b17d79](https://github.com/celsonery/db-sync/commit/b17d7940019b27091589f304338dde19b1f5f56b))
+* Corrige tamanho do logo ([9f1b46](https://github.com/celsonery/db-sync/commit/9f1b462c87c0bb71fc908297da5877d10295e571))
+
+### Alterações sem importâncias
+
+* Resolve conflito ([415d2e](https://github.com/celsonery/db-sync/commit/415d2eb7ca7436fa92877488a3ac9c60fc47da63), [dc1e87](https://github.com/celsonery/db-sync/commit/dc1e87f499b63f3e58b44b3232cc5451d99addd9), [85ea2f](https://github.com/celsonery/db-sync/commit/85ea2f11491f0d9301ec4cb20a1c7913648ab779))
+
+
+---
+
 ## [1.3.3](https://github.com/celsonery/db-sync/compare/v1.3.2...v1.3.3) (2024-08-12)
 
 ### Alterações sem importâncias
