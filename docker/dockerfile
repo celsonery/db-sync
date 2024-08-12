@@ -1,43 +1,69 @@
-# Building frontend nodejs stage
-FROM node:lts-alpine3.20 as js-build
-RUN apk --update --no-cache add nodejs npm
-WORKDIR /app
-COPY . ./
-RUN npm install
-RUN npm run build
+# Base image to run
+FROM php:8.3.9-cli-alpine3.20
 
-# Building backend laravel stage
-FROM celsonery/php-laravel-pgsql:latest as php-build
-WORKDIR /app
-COPY . ./
-RUN composer update -o --no-dev --with-all-dependencies
+# Update alpine image and install packeges
+RUN apk --update --no-cache add curl \
+    zip \
+    unzip \
+    vim \
+    libzip \
+    libzip-dev \
+    libpq-dev \
+    libpng-dev \
+    oniguruma-dev \
+    linux-headers \
+    git \
+    lynx \
+    nodejs \
+    npm \
+    postgresql-client
 
-# Production stage
-FROM celsonery/php-laravel-pgsql:latest as production
-WORKDIR /app
-COPY --from=php-build /app ./
-COPY --from=js-build /app/public/build ./public/build
+# Install packages to run PHP/laravel and our app
+RUN apk --update --no-cache add php83-bcmath \
+    php83-bz2 \
+    php83-calendar \
+    php83-exif \
+    php83-gettext \
+    php83-opcache \
+    php83-pcntl \
+    php83-zip \
+    php83-pgsql
+
+# Install extensions for PHP
+RUN docker-php-ext-install \
+    pdo \
+    pdo_pgsql \
+    exif
+
+# Use php.ini-production as php.ini and add extra.ini
+RUN ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+
+# Install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Workdir
+WORKDIR /usr/local/bin/app
+
+# Copy source files and create .env using .env.example
+COPY . ./
 COPY .env.example .env
-RUN php artisan key:generate
 
-# Create sqlite database empty
+# Criando um Database SQLite vazio
 RUN touch database/database.sqlite
 RUN chmod 777 database/database.sqlite
 
-# Copy file to services [ nginx / supervisor ]
-COPY ./docker/nginx/default.conf /etc/nginx/http.d/default.conf
-COPY ./docker/supervisor/supervisord.conf /etc/supervisord.conf
-COPY ./docker/entrypoint.sh ./
+# Update composer optimizing autoload with no dev dependencies
+RUN composer update -o --no-dev
 
-# Create folders to services
-RUN mkdir -p /var/log/supervisor /run/nginx /var/www/app
+# Generate laravel key
+RUN php artisan key:generate
 
-# Grand permission to nobody
-RUN chown -R nobody:nobody /app
+# Build frontend using npm
+RUN npm install
+RUN npm run build
 
-# Give permission to performer
-RUN chmod 755 entrypoint.sh
+# Expose port
+EXPOSE 8000
 
-# Run application
-# CMD ["/usr/bin/supervisord"]
-ENTRYPOINT ["./entrypoint.sh"]
+# Run using this command
+CMD [ "php", "artisan", "serve", "--host=0.0.0.0", "--port=8000" ]

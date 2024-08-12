@@ -1,0 +1,43 @@
+# Building frontend nodejs stage
+FROM node:lts-alpine3.20 as js-build
+RUN apk --update --no-cache add nodejs npm
+WORKDIR /app
+COPY . ./
+RUN npm install
+RUN npm run build
+
+# Building backend laravel stage
+FROM celsonery/php-laravel-pgsql:latest as php-build
+WORKDIR /app
+COPY . ./
+RUN composer update -o --no-dev --with-all-dependencies
+
+# Production stage
+FROM celsonery/php-laravel-pgsql:latest as production
+WORKDIR /app
+COPY --from=php-build /app ./
+COPY --from=js-build /app/public/build ./public/build
+COPY .env.example .env
+RUN php artisan key:generate
+
+# Create sqlite database empty
+RUN touch database/database.sqlite
+RUN chmod 777 database/database.sqlite
+
+# Copy file to services [ nginx / supervisor ]
+COPY ./docker/nginx/default.conf /etc/nginx/http.d/default.conf
+COPY ./docker/supervisor/supervisord.conf /etc/supervisord.conf
+COPY ./docker/entrypoint.sh ./
+
+# Create folders to services
+RUN mkdir -p /var/log/supervisor /run/nginx /var/www/app
+
+# Grand permission to nobody
+RUN chown -R nobody:nobody /app
+
+# Give permission to performer
+RUN chmod 755 entrypoint.sh
+
+# Run application
+# CMD ["/usr/bin/supervisord"]
+ENTRYPOINT ["./entrypoint.sh"]
