@@ -25,12 +25,17 @@ class DatabaseService
             $pipe->command("egrep -v 'List|Name|--|\||\(|dev|hml|__|_2'");
         });
 
-        $total = preg_split('/\n/', $result->output());
-        $total = array_filter($total);
+        if ($result->successful()) {
+            $total = preg_split('/\n/', $result->output());
+            $total = array_filter($total);
 
-        logs()->debug('Total de databases encontrados em ' . $this->pgHost . ': ' . count($total) . ' com o usuário: ' . $this->pgUser);
+            logs()->debug('Total de databases encontrados em ' . $this->pgHost . ': ' . count($total) . ' com o usuário: ' . $this->pgUser);
 
-        return $total;
+            return $total;
+        }
+
+        logs()->debug($result->errorOutput());
+        return [];
     }
 
     public function execute(string $database): string
@@ -65,8 +70,6 @@ class DatabaseService
         $result = Process::run("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} -c \"CREATE DATABASE {$database}_dev\"");
 
         return $result->successful();
-
-        return false;
     }
 
     private function sync(string $database): void
