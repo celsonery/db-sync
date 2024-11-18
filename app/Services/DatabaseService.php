@@ -10,19 +10,22 @@ class DatabaseService
 {
     public function __construct(
         private $pgHost = '',
+        private $pgHostDev = '',
         private $pgUser = ''
     ) {
         $this->pgHost = env('PGHOST');
+        $this->pgHostDev = env('PGHOSTDEV');
         $this->pgUser = env('PGUSERNAME');
     }
 
     public function index(): array
     {
         logs()->debug('Iniciando busca por databases...');
+
         $result = Process::pipe(function (Pipe $pipe) {
             $pipe->command("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} -l");
             $pipe->command("awk '{print $1}'");
-            $pipe->command("egrep -v 'List|Name|--|\||\(|dev|hml|__|_2'");
+            $pipe->command("egrep -v 'List|Name|--|\||\('");
         });
 
         if ($result->successful()) {
@@ -57,17 +60,17 @@ class DatabaseService
         Log::debug("Procurando se banco {$database}_dev já existe...");
 
         $process = Process::pipe(function (Pipe $pipe) use ($database) {
-            $pipe->command("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} -l");
+            $pipe->command("/usr/bin/psql -h {$this->pgHostDev} -U {$this->pgUser} -l");
             $pipe->command("grep {$database}_dev");
         });
 
         if ($process->successful()) {
             logs()->debug('Database encontrado, removendo!: ' . $process->output());
-            Process::run("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} -c \"DROP DATABASE {$database}_dev with (force)\"");
+            Process::run("/usr/bin/psql -h {$this->pgHostDev} -U {$this->pgUser} -c \"DROP DATABASE {$database}_dev with (force)\"");
         }
 
         logs()->debug('Criando Database: ' . $process->output());
-        $result = Process::run("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} -c \"CREATE DATABASE {$database}_dev\"");
+        $result = Process::run("/usr/bin/psql -h {$this->pgHostDev} -U {$this->pgUser} -c \"CREATE DATABASE {$database}_dev\"");
 
         return $result->successful();
     }
@@ -76,7 +79,7 @@ class DatabaseService
     {
         $process = Process::pipe(function (Pipe $pipe) use ($database) {
             $pipe->command("/usr/bin/pg_dump -h {$this->pgHost} -U {$this->pgUser} -v {$database}");
-            $pipe->command("/usr/bin/psql -h {$this->pgHost} -U {$this->pgUser} {$database}_dev");
+            $pipe->command("/usr/bin/psql -h {$this->pgHostDev} -U {$this->pgUser} {$database}_dev");
         });
 
         $process->successful()

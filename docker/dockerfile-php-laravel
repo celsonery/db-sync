@@ -1,5 +1,5 @@
 # Base image to run
-FROM php:8.3.9-cli-alpine3.20
+FROM php:8.4.0beta5-cli-alpine3.20
 
 # Update alpine image and install packeges
 RUN apk --update --no-cache add curl zip
